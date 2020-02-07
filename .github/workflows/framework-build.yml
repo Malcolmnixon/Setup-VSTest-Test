@@ -10,6 +10,12 @@ jobs:
     steps:
     - uses: actions/checkout@v1
       
+    - name: Setup Nuget.exe
+      uses: warrenbuckley/Setup-Nuget@v1
+
+    - name: Nuget restore
+      run: nuget restore TestProject.sln
+      
     - name: Setup MSBuild.exe
       uses: warrenbuckley/Setup-MSBuild@v1
 
