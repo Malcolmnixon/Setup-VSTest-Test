@@ -1,0 +1,23 @@
+name: framework-windows
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v1
+      
+    - name: Setup MSBuild.exe
+      uses: warrenbuckley/Setup-MSBuild@v1
+
+    - name: MSBuild
+      run: msbuild TestProject.sln
+      
+    - name: Setup VSTest.exe
+      uses: Malcolmnixon/Setup-VSTest@v2
+
+    - name: VSTest
+      run: vstest.console ClassLibrary.Test\bin\Debug\ClassLibrary.Test.dll
